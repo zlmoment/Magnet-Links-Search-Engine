@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block windowtitle %}
+	播放页
+{% endblock%}
+
+{% block container %}
+
+{% if error %}
+
+<div class="row">
+	<div class="span12">
+		<div class="alert alert-error" style="margin-top:10px;">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		播放参数不能为空
+		</div>
+	</div>
+</div>
+
+{% else %}
+<div class="row">
+	<div class="span12">
+		<h3>MGNT.me 正在为您云点播</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="span12">
+		<p style="word-wrap: break-word;overflow: hidden;"><span class="item_list_name">文件名称：</span>{{title}}</p>
+		<p>如果您喜欢，记得点击左边的分享告诉你的好友们哦~</p>
+		<p><span class="label label-info">注意!</span> 如果出现“服务器忙”或302错误的提示，请<a href="/vodplay/{{playid}}/{{title}}">点击这里</a>重新加载。</p>
+		<p>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-5514094937222077";
+		/* mgnt-searchlist */
+		google_ad_slot = "3845909351";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="span12">
+		<iframe width=970 height=560 frameborder=0 scrolling=auto src="http://www.tvgua.com/play_1.php?url={{playid}}"></iframe>
+	</div>
+</div>
+<div class="row">
+  <div class="span12">
+    <script type="text/javascript"><!--
+	google_ad_client = "ca-pub-5514094937222077";
+	/* mgnt-search-list-top */
+	google_ad_slot = "8276108951";
+	google_ad_width = 728;
+	google_ad_height = 15;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+  </div>
+</div>
+<div class="row">
+	<div class="span12">
+		<div class="jiathis_share_slide jiathis_share_32x32" id="jiathis_share_slide">
+			<div class="jiathis_share_slide_top" id="jiathis_share_title">
+			</div>
+			<div class="jiathis_share_slide_inner">
+				<div class="jiathis_style_32x32">
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_renren"></a>
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_fb"></a>
+				<a class="jiathis_button_twitter"></a>
+				<a class="jiathis_button_googleplus"></a>
+				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				<script type="text/javascript">
+				var jiathis_config = {data_track_clickback:'true'
+					,slide:{
+						divid:'container',
+						pos:'left'
+					}
+				};
+				</script>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span12">
+		<h4>此播放页面地址，您可以加入收藏或分享</h4>
+		<p>本页面永久地址：</p>
+		<input type="text" class="input-block-level" value="http://mgnt.me/vodplay/{{playid}}/{{title}}">
+		<div class="share">
+			<div class="jiathis_style_32x32">
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_renren"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_fb"></a>
+				<a class="jiathis_button_twitter"></a>
+				<a class="jiathis_button_googleplus"></a>
+				<a class="jiathis_button_tumblr"></a>
+				<a href="http://www.jiathis.com/share?uid=906036" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			</div>
+		</div>
+		<p class="myblock"></p>
+	</div>
+</div>
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=906036" charset="utf-8"></script>	
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_slide.js" charset="utf-8"></script>
+{% endif %}
+
+{% endblock%}

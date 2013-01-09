@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+	磁力链短网址
+{% endblock%}
+
+
+{% block meta %}
+	{% if item %}
+		<meta http-equiv="refresh" content="2;url=/m/{{item.short_link}}">
+	{% endif %}
+{% endblock %}
+
+
+{% block container %}
+<div class="row">
+  <div class="span12">
+    <h3>MGNT.me 磁力链短网址</h3>
+  </div>
+</div>	
+<div class="row" style="height:38px;">
+	<div class="span12">
+		<div class="jiathis_style_32x32">
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_renren"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_fb"></a>
+			<a class="jiathis_button_twitter"></a>
+			<a class="jiathis_button_googleplus"></a>
+			<a class="jiathis_button_tumblr"></a>
+			<a href="http://www.jiathis.com/share?uid=906036" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+		</div>
+	</div>
+</div>
+<hr>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-error" style="margin-top:10px;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+{% if item %}
+<div class="row">
+  <div class="span12">
+	<div class="alert alert-success" style="margin-top:10px;text-align:center;">
+		<h4>恭喜！生成成功！2秒钟后将跳转到结果网址....</h4>
+		<div>
+			<img src="{{url_for('static', filename='images/loading.gif')}}" alt="loading" />
+		</div>
+		<p class="myblock;"></p>
+		<p>如果2秒钟之后还没有跳转，请<a href="/m/{{item.short_link}}" style="color:blue;">点击这里继续</a>。</p>
+	</div>
+  </div>
+</div>	
+{% endif %}
+
+<div class="row">
+  <div class="span12">
+     <p>请输入磁力链接的完整地址，然后点击生成磁力短网址：</p>
+     <div style="margin:30px auto;">
+     	<form class="form-horizontal" method="post" action="/m/create" id="urlform">
+     	  <div class="control-group">
+		  	<input type="text" class="input-block-level" placeholder="请输入磁力资源地址" name="magnet" id="addressinput">
+		  </div>
+		  <div class="control-group">
+		  	<a type="submit" class="btn" href="javascript:submitform_url();" >点击生成短地址</a>
+		  </div>
+		  <script type="text/javascript">
+			function submitform_url(){
+				if (document.getElementById('addressinput').value == "")
+					alert("磁力资源地址不能为空");
+				else
+					document.getElementById('urlform').submit();
+			}
+		  </script>
+		</form>
+	  </div>
+	</div>
+</div>	
+<div class="row">
+  <div class="span12">
+    <h4>怎样玩转磁力短网址？</h4>
+    <p>你可曾因为那么那么那么长的磁力链接而烦恼？你都不好意思给好友发过去有没有！有了短网址服务，您就可以将那么那么那么长的磁力链接轻松地保存、分享了~自己看着也舒心哦</p>
+	<p>想给好友传种子文件...先利用<a href="/transfer/t2m">Torrent转磁力链接</a>服务把种子转成磁力链接，再发送给好友磁力短网址，摆脱传文件的烦恼~</p>
+	<p>嘘...宅男们有福了，不解释..</p>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">  
+function SelectAll(id)  
+{  
+    document.getElementById(id).focus();  
+    document.getElementById(id).select();  
+}
+</script>
+
+{% if not item %}
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=906036" charset="utf-8"></script>
+{% endif %}
+{% endblock%}

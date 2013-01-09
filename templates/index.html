@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	  	<div class="container">
+	    <a class="brand" href="/" style="color:black;">MGNT.me</a>
+	       <div class="nav-collapse">
+	         <ul class="nav">
+	           <li><a href="/vodplay">云播放</a></li>
+	           <li><a href="/m">磁力短网址</a></li>
+	           <li class="dropdown">
+	             <a href="#" class="dropdown-toggle" data-toggle="dropdown">磁力转换 <b class="caret"></b></a>
+	             <ul class="dropdown-menu">
+	               <li><a href="/transfer/t2m">Torrent转磁力链接</a></li>
+	               <li><a href="/transfer/m2t">磁力链接转Torrent</a></li>
+	             </ul>
+	           </li>
+	           <li><a href="/page/about">关于</a></li>
+	           <li><a href="/api">API</a></li>
+	           <li><a href="/page/faq">FAQ</a></li>
+	         </ul> 
+	      </div>
+	  	  </div>
+	  </div>
+</div>
+{% endblock%}
+
+{% block container %}
+<div style="text-align:center;margin-top:70px;margin-bottom:80px;">
+	<img src="{{url_for('static', filename='images/logo.png')}}" alt="logo" />
+	<p style="margin:20px;">我们致力于建造最大的磁力链资源搜索引擎</p>
+	
+	<form class="input-append" action="/search/s" method="get" id="form_search">
+		<div class="input-append">
+			<input type="text" class="span6" value="{{kw}}" name="kw">
+			<input type="hidden" value="1" name="page">
+			<a type="submit" class="btn" href="javascript:submitform_search();">搜索磁力资源</a>
+		</div>
+		<script type="text/javascript">
+		function submitform_search(){
+		  document.getElementById('form_search').submit();
+		}
+		</script>
+	</form>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	    <div class="alert alert-error" style="margin-top:10px;">
+	    <button type="button" class="close" data-dismiss="alert">&times;</button>
+	    {% for message in messages %}
+	    	{{ message }}
+	    {% endfor %}
+	    </div>
+	  {% endif %}
+	{% endwith %}
+	<p style="margin:100px 0 0 0;">目前索引资源数：4672691</p>
+	<div class="row" style="height:38px;">
+		<div class="span12" style="padding:20px 0 10px 310px;">
+			<div class="jiathis_style_32x32">
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_renren"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_fb"></a>
+				<a class="jiathis_button_twitter"></a>
+				<a class="jiathis_button_googleplus"></a>
+				<a class="jiathis_button_tumblr"></a>
+				<a href="http://www.jiathis.com/share?uid=906036" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock%}
+
+{% block footer %}
+<footer class="footer navbar-fixed-bottom" style="text-align: center;padding: 10px 0 0 0;margin-top: 70px;border-top: 1px solid #E5E5E5;background-color:white;">
+  	<div class="container">
+  		<small>@2013</small>
+  		<p><small>本站所有资源信息均从互联网搜索而来，本站不对显示的内容承担责任。本站也不保存有任何可直接下载的文件。</small></p>
+  	</div>
+</footer>
+{% endblock%}
+
+{% block footjs %}
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=906036" charset="utf-8"></script>
+{% endblock %}
+

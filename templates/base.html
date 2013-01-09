@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block windowtitle %}{{ config.SITE_TITLE }}{% endblock%}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="{% block pagedesc %}{{ config.SITE_DESC }}{% endblock %}">
+    {% block meta %}{% endblock %}
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
+    <style>
+	.myblock{display:block;clear:both;height:2px;}
+	{% block mystyle %}{% endblock %}
+	</style>
+  </head>
+  <body>
+  	{% block navbar %}
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/" style="color:black;">MGNT.me</a>
+            <div class="nav-collapse">
+              <ul class="nav">
+                <li><a href="/vodplay">云播放</a></li>
+                <li><a href="/m">磁力短网址</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">磁力转换 <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/transfer/t2m">Torrent转磁力链接</a></li>
+                    <li><a href="/transfer/m2t">磁力链接转Torrent</a></li>
+                  </ul>
+                </li>
+                <li><a href="/page/about">关于</a></li>
+                <li><a href="/api">API</a></li>
+                <li><a href="/page/faq">FAQ</a></li>
+              </ul> 
+              <form class="navbar-form pull-right" action="/search/s" method="get" id="form_search">
+                <div class="input-append">
+                <input type="text" class="span3" value="{{kw}}" name="kw">
+                <input type="hidden" value="1" name="page">
+                <a type="submit" class="btn btn-primary" href="javascript:submitform_search();">搜索磁力资源</a>
+                </div>
+                <script type="text/javascript">
+					function submitform_search(){
+					  document.getElementById('form_search').submit();
+					}
+				</script>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    <div class="container" style="padding-top:40px;">
+
+    {% block container %}{% endblock%}
+    </div>
+	
+    <script src="{{url_for('static', filename='js/jquery-1.8.2.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  
+  {% block footer %}
+  <footer class="footer" style="text-align: center;padding: 20px 0;margin-top: 70px;border-top: 1px solid #E5E5E5;background-color:white;">
+  	<style>
+  	.footer-links {
+	  margin: 10px 0;
+	}
+	.footer-links li {
+	  display: inline;
+	  padding: 0 2px;
+	}
+	.footer-links li:first-child {
+	  padding-left: 0;
+	}
+  	</style>
+  	<div class="container">
+  		<ul class="footer-links">
+  			<li><a href="/page/about">关于</a></li>
+  			<li class="muted">·</li>
+            <li><a href="/api">API</a></li>
+            <li class="muted">·</li>
+            <li><a href="/page/faq">FAQ</a></li>
+  		</ul>
+  		<p>@2013</p>
+  		<p><small>本站所有资源信息均从互联网搜索而来，本站不对显示的内容承担责任。本站也不保存有任何可直接下载的文件。</small></p>
+  	</div>
+  </footer>
+  {% endblock%}
+  {% block footjs %}{% endblock%}
+  <script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-37386471-1']);
+	  _gaq.push(['_setDomainName', 'mgnt.me']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+  <div id="51tj" style="display:none;">
+  <script language="javascript" type="text/javascript" src="http://js.users.51.la/15292173.js"></script>
+  <noscript><a href="http://www.51.la/?15292173" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/15292173.asp" style="border:none" /></a></noscript>
+  </div>
+  </body>
+</html>

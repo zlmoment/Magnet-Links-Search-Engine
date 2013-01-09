@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+	{{result.searchword}}结果列表
+{% endblock%}
+
+
+{% block container %}
+<div class="row">
+  <div class="span12">
+    <h3>{{result.searchword}}</span> 的磁力链接搜索结果</h3>
+    <p>共找到 {{result.total}} 条结果</p>
+  </div>
+</div>	
+<div class="row">
+  <div class="span12">
+    <script type="text/javascript"><!--
+	google_ad_client = "ca-pub-5514094937222077";
+	/* mgnt-search-list-top */
+	google_ad_slot = "8276108951";
+	google_ad_width = 728;
+	google_ad_height = 15;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+  </div>
+</div>
+	
+
+<div class="row">
+	<div class="span12">
+		<table class="table table-hover">
+		    <thead>
+		    	<tr>
+			        <th style="width: 64%;">名称</th>
+			        <th style="width: 10%;">分类</th>
+			        <th style="width: 10%;">文件大小</th>
+			        <th style="width: 8%;">种子数</th>
+			        <th style="width: 8%;">下载数</th>
+		    	</tr>
+		    </thead>
+		    <tbody>
+		    	{% for i,item in result.list %}
+		      	<tr onMouseOver="rowOver(this)" onMouseOut="rowOut(this)">
+		      		{% if item.torrent_size>1073741824 %}
+		      		{% set size = '%4.2f' % (item.torrent_size/1073741824) %}
+		            <td><a href="/detail/{{item.torrent_hash}}/{{item.title}}/{{size}}GB/{{item.seeds}}/{{item.leechs}}" target="_blank">{{item.title}}</a></td>
+		            <td>{{item.category}}</td>
+		            <td>{{size}} GB</td>
+		            <td>{{item.seeds}}</td>
+		            <td>{{item.leechs}}</td>
+		            {% else %}
+		            {% set size = '%4.2f' % (item.torrent_size/1048576) %}
+		            <td><a href="/detail/{{item.torrent_hash}}/{{item.title}}/{{size}}MB/{{item.seeds}}/{{item.leechs}}" target="_blank">{{item.title}}</a></td>
+		            <td>{{item.category}}</td>
+		            <td>{{size}} MB</td>
+		            <td>{{item.seeds}}</td>
+		            <td>{{item.leechs}}</td>
+		            {% endif %}</td>
+		        </tr>
+		      	{% endfor %}
+		        <tr><td colspan="5">本站资源均来自网络，本站不保存任何实际的下载文件，也不对任何资源负责。</td></tr>
+			</tbody>
+		</table>
+		
+		<div class="row">
+			<div class="span1"></div>
+			<div class="span10">
+				<div>
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-5514094937222077";
+					/* mgnt-searchlist */
+					google_ad_slot = "3845909351";
+					google_ad_width = 728;
+					google_ad_height = 90;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+				</div>
+		  	</div>
+		  	<div class="span1"></div>
+		</div>
+		{% if result.total_pages > 1 %}
+		<div class="pagination pagination-centered">
+			<ul>
+			{% if result.current_page > 1 %}
+			{% set num = result.current_page - 1 %}
+			    <li class="prev"><a href="/search/s?kw={{ result.searchword }}&page={{ num }}">&larr;</a></li>
+			{% else %}
+			    <li class="prev disabled"><a href="#">&larr;</a></li>
+			{% endif %}
+			
+			{% for num in range( 1, result.total_pages ) %}
+			    <li class="{{ 'active' if num == result.current_page else '' }}"><a href="/search/s?kw={{ result.searchword }}&page={{ num }}">{{ num }}</a></li>
+			{% endfor %}
+			
+			{% if result.current_page < result.total_pages %}
+			{% set num = result.current_page + 1 %}
+			    <li class="next"><a href="/search/s?kw={{ result.searchword }}&page={{ num }}">&rarr;</a></li>
+			{% else %}
+			    <li class="next disabled"><a href="#">&rarr;</a></li>
+			{% endif %}
+			</ul>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock%}

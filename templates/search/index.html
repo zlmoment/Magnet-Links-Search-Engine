@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}磁力链资源搜索{% endblock%}
+{% block contentright %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<div class="verticle"></div>
+
+<div class="middle">
+	<img src="{{url_for('static', filename='images/logo.png')}}" alt="logo" />
+</div>
+<p class="middle">磁力链资源搜索引擎</p>
+<div class="verticle clear"></div>
+
+
+<div class="search middle" style="float:none;margin:20px auto;">
+	<form method="get" action="/search/s">
+	<table border="0" cellspacing="0" cellpadding="0" id="torrent-search">
+	<tbody>
+	<tr>
+		<td class="liost-td">
+			<div style="position: relative;">
+					<input type="text" title="Search" value="{{kw}}" maxlength="2048" name="kw" class="liost" id="magsearch">
+					<input type="hidden" value="1" name="page">
+				</div>
+			</td>
+			<td>
+				<div class="ds">
+					<div class="lsbb">
+						<input type="submit" value="搜索" class="lsb">
+					</div>
+				</div>
+			</td>												
+		</tr>
+	</tbody>
+	</table>
+	</form>
+</div>
+<div class="verticle clear"></div>
+<p class="middle">亲，您还可以从任何页面的右上方直接搜索哦~</p>
+<p class="middle">目前索引资源数：4661177</p>
+<div class="verticle clear"></div>
+
+<div class="share middle" style="margin-left:220px;">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style_32x32">
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_renren"></a>
+		<a class="jiathis_button_tqq"></a>
+		<a class="jiathis_button_qzone"></a>
+		<a class="jiathis_button_fb"></a>
+		<a class="jiathis_button_twitter"></a>
+		<a class="jiathis_button_googleplus"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share?uid=906036" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<!-- JiaThis Button END -->
+</div>
+<div class="verticle clear"></div>
+<p class="middle" style="font-size:12px;color:#ccc;">我们从DHT网络, thepiratebay.se, fenopy.eu, btjunkie.org, h33t.com, torrentfunk.com, torlock.com, isohunt.com, kat.ph, btscene.eu, torrentreactor.net, extratorrent.com, bitsnoop.com, mvgroup.org, bt-chat.com和其它300多个资源站收集资源并提供资源的磁力链接和种子（在线云播放功能火热测试中）。</p>
+<div class="verticle clear"></div>
+<p class="middle" style="font-size:12px;color:#ccc;">@2013</p>
+<div class="verticle clear"></div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=906036" charset="utf-8"></script>
+{% endblock%}

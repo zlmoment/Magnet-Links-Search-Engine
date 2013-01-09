@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+	API支持文档
+{% endblock%}
+
+{% block container %}
+<div class="row">
+  <div class="span12">
+    <h3>MGNT.me 开放API支持文档</h3>
+    <p>请注意，您需要在api请求中包括您的apikey，请查看本页下方说明如何获得apikey</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+	<h4>获取搜索结果</h4>
+	<p>获取某关键字的搜索结果，结果包括如下关键字</p>
+	<ul>
+		<li>title（标题）</li>
+		<li>category（分类）</li>
+		<li>seeds（种子数）</li>
+		<li>leechs（下载数）</li>
+		<li>torrent_size（文件大小）</li>
+		<li>torrent_hash（文件特征值HASH）</li>
+	</ul>
+	<p style="margin-top:10px;">示例</p>
+	<p style="margin-left:16px;">搜索 spiderman 的搜索结果：</p>
+	<p style="margin-left:16px;"><a href="http://mgnt.me/api/getresult?key=jyObEa&s=spiderman&page=1" target="_blank">http://mgnt.me/api/getresult?key=jyObEa&s=spiderman&page=1</a></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+	<h4>获取某磁力链接的短网址</h4>
+	<p><span class="label label-info">注意!</span> 您必须在GET方式传入磁力链接时将磁力链接地址进行URL编码，否则无法生成。</p>
+	<p>例如，可以将以下长磁力连接：</p>
+	<p style="margin-left:16px;word-wrap: break-word;overflow: hidden;">
+	magnet:?xt=urn:btih:0a84d05e9e1b426add4bd1166bfd5b311aee16ed&dn=The Amazing Spiderman (2012) HDCAM x264 AAC UNiQUE&tr=http://121.14.98.151:9090/announce&tr=http://bigtorrent.org:2710/announce&tr=http://coppersurfer.tk:6969/announce&tr=http://tracker1.wasabii.com.tw:6969/announce&tr=http://www.h33t.com:3310/announce&tr=udp://tracker.istole.it:80/announce&tr=udp://tracker.publicbt.com:80/announce&tr=udp://www.h33t.com:3310/announce
+	</p>
+	<p>转换为：</p>
+	<p style="margin-left:16px;">
+	http://mgnt.me/m/pzFUVL
+	</p>
+	<p style="margin-top:10px;">示例</p>
+	<p style="margin-left:16px;word-wrap: break-word;overflow: hidden;">
+	<a href="http://mgnt.me/api/getshorturl?key=jyObEa&mag=magnet%3A%3Fxt%3Durn%3Abtih%3A0a84d05e9e1b426add4bd1166bfd5b311aee16ed%26dn%3DThe%20Amazing%20Spiderman%20%282012%29%20HDCAM%20x264%20AAC%20UNiQUE%26tr%3Dhttp%3A//121.14.98.151%3A9090/announce%26tr%3Dhttp%3A//bigtorrent.org%3A2710/announce%26tr%3Dhttp%3A//coppersurfer.tk%3A6969/announce%26tr%3Dhttp%3A//tracker1.wasabii.com.tw%3A6969/announce%26tr%3Dhttp%3A//www.h33t.com%3A3310/announce%26tr%3Dudp%3A//tracker.istole.it%3A80/announce%26tr%3Dudp%3A//tracker.publicbt.com%3A80/announce%26tr%3Dudp%3A//www.h33t.com%3A3310/announce
+	" target="_blank">
+	http://mgnt.me/api/getshorturl?key=jyObEa&mag=magnet%3A%3Fxt%3Durn%3Abtih%3A0a84d05e9e1b426add4bd1166bfd5b311aee16ed%26dn%3DThe%20Amazing%20Spiderman%20%282012%29%20HDCAM%20x264%20AAC%20UNiQUE%26tr%3Dhttp%3A//121.14.98.151%3A9090/announce%26tr%3Dhttp%3A//bigtorrent.org%3A2710/announce%26tr%3Dhttp%3A//coppersurfer.tk%3A6969/announce%26tr%3Dhttp%3A//tracker1.wasabii.com.tw%3A6969/announce%26tr%3Dhttp%3A//www.h33t.com%3A3310/announce%26tr%3Dudp%3A//tracker.istole.it%3A80/announce%26tr%3Dudp%3A//tracker.publicbt.com%3A80/announce%26tr%3Dudp%3A//www.h33t.com%3A3310/announce
+	</a>
+  </div>
+</div>
+
+
+<h4>如何获取apikey</h4>
+<p>您必须加本站为友情链接，才能申请到具有永久访问权限的apikey。</p>
+<p>添加完毕后，请将页面地址和网站信息发送到 mgnt.me#gmail.com（请将#换成@）</p>
+<div class="verticle"></div>
+{% endblock%}

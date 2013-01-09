@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block windowtitle %}
+	播放页
+{% endblock%}
+
+{% block meta %}
+	<meta http-equiv="refresh" content="5;url=/vodplay/p/{{playid}}/{{title}}">
+{% endblock %}
+
+{% block container %}
+
+{% if error %}
+<div class="row">
+	<div class="span12">
+		<div class="alert alert-error" style="margin-top:10px;">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		播放参数不能为空
+		</div>
+	</div>
+</div>
+{% else %}
+<div style="text-align: center;">
+	<div class="row">
+		<div class="span12">
+			<p class="myblock;"></p>
+			<img src="{{url_for('static', filename='images/logo.png')}}" alt="logo" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h3>MGNT.me 正在为您准备点播文件，请等待网页自动跳转</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<img src="{{url_for('static', filename='images/loading.gif')}}" alt="logo" />
+			<p class="myblock;"></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<p class="myblock;"></p>
+			<p style="word-wrap: break-word;overflow: hidden;">{{title}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<p class="middle">如果网页10秒钟之后没有跳转，请<a href="/vodplay/p/{{playid}}/{{title}}">点击这里继续</a>。</p>
+		</div>
+	</div>
+</div>
+<iframe runat="server" src="http://www.tvgua.com/vodtest.php" width="1" height="1" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+{% endif %}
+
+{% endblock%}

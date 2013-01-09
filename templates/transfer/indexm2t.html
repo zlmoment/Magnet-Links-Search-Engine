@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+	磁力链接转Torrent
+{% endblock%}
+
+{% block container %}
+<div class="row">
+  <div class="span12">
+    <h3>磁力链接转Torrent</h3>
+  </div>
+</div>	
+<div class="row" style="height:38px;">
+	<div class="span12">
+		<div class="jiathis_style_32x32">
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_renren"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_fb"></a>
+			<a class="jiathis_button_twitter"></a>
+			<a class="jiathis_button_googleplus"></a>
+			<a class="jiathis_button_tumblr"></a>
+			<a href="http://www.jiathis.com/share?uid=906036" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+		</div>
+	</div>
+</div>
+<hr>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-error" style="margin-top:10px;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {% for message in messages %}
+    	{{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+<div class="row">
+  <div class="span12">
+  	<p>请将您得到的磁力链接粘贴到下方的输入框中，然后点击下载即可。<small>有些链接可能会提示找不到种子文件。</small></p>
+	<form class="form-horizontal" method="post" action="http://magnet2torrent.com/upload/" id="m2bform">
+	  <div class="control-group">
+		<input type="text" class="input-block-level" placeholder="请输入磁力链接" name="magnet" id="addressinput">
+	</div>
+	<div class="control-group">
+		<a type="submit" class="btn btn-primary" href="javascript:submitform_m2b()" >获取种子文件</a>
+	</div>
+	<script type="text/javascript">
+	function submitform_m2b(){
+		if (document.getElementById('addressinput').value == "")
+			alert("磁力链接不能为空");
+		else
+			document.getElementById('m2bform').submit();
+	}
+	</script>
+	</form>
+  </div>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=906036" charset="utf-8"></script>
+{% endblock%}

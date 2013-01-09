@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block windowtitle %}
+	欢迎使用云播放
+{% endblock%}
+
+{% block container %}
+<div class="row">
+  <div class="span12">
+    <h3>欢迎使用 MGNT.me 云点播系统</h3>
+  </div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<div class="jiathis_style_32x32">
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_renren"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_fb"></a>
+			<a class="jiathis_button_twitter"></a>
+			<a class="jiathis_button_googleplus"></a>
+			<a class="jiathis_button_tumblr"></a>
+			<a href="http://www.jiathis.com/share?uid=906036" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+		</div>
+	</div>
+</div>
+<div class="row" style="margin-top:20px;">
+  <div class="span12">
+    <script type="text/javascript"><!--
+	google_ad_client = "ca-pub-5514094937222077";
+	/* mgnt-search-list-top */
+	google_ad_slot = "8276108951";
+	google_ad_width = 728;
+	google_ad_height = 15;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+  </div>
+</div>
+<hr>
+<div class="row">
+	<div class="span12">
+		<p>您可以使用三种云播放方式：</p>
+		<p class="myblock"></p>
+	</div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-error" style="margin-top:10px;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="row">
+	<div class="span12">
+		<div class="tabbable">
+		  <ul class="nav nav-tabs">
+		    <li class="active"><a href="#tab1" data-toggle="tab">直接输入资源地址</a></li>
+		    <li><a href="#tab2" data-toggle="tab">上传种子文件</a></li>
+		    <li><a href="#tab3" data-toggle="tab">输入种子特征码</a></li>
+		  </ul>
+		  <div class="tab-content">
+		    <div class="tab-pane active well" id="tab1">
+		      <p>请输入资源地址，支持ed2k、magnet、thunder等开头的地址：</p>
+		      <div style="margin:30px auto;">
+		      	<form class="form-horizontal" method="get" action="/vodplay/fromaddress" id="addform">
+		      	  <div class="control-group">
+				  	<input type="text" class="input-block-level" placeholder="请输入资源地址" name="add" id="addressinput">
+				  </div>
+				  <div class="control-group">
+				  	<a type="submit" class="btn btn-primary" href="javascript:submitform_add()" >点击尝试云播放此资源</a>
+				  </div>
+				  <script type="text/javascript">
+					function submitform_add(){
+					  document.getElementById('addform').submit();
+					}
+				  </script>
+				</form>
+		      </div>
+		    </div>
+		    <div class="tab-pane well" id="tab2">
+		      <p>您可以上传视频的种子文件，然后点击播放，便可进行在线云播放。</p>
+		      <div style="margin:30px auto;">
+			      <form class="form-horizontal" action="/transfer/upload/toplay" enctype="multipart/form-data" method="post" id="b2mform">
+					<div class="fileupload fileupload-new" data-provides="fileupload" style="margin:20px 0;">
+					  <div class="input-append">
+					    <div class="uneditable-input span3">
+					    	<i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span>
+					    </div>
+					    <span class="btn btn-file">
+					    	<span class="fileupload-new">选择种子文件</span>
+					    	<span class="fileupload-exists">重新选择</span>
+					    	<input class="text" type="file" name="upload_file" id="fileselect" onchange="checkFileType(this);">
+					    </span>
+					    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">移除</a>
+					  </div>
+					</div>
+					<div class="control-group">
+						<a href="javascript:submitform_b2m()" class="btn btn-primary" id="b2mbtn">点击尝试云播放此资源</a>
+					</div>
+					<script type="text/javascript">
+					function checkFileType(ths){
+						if (ths.value == "") {
+							alert("请选择上传.torrent文件");
+							return false;
+						} else {
+							if (!/\.(torrent)$/.test(ths.value)) {
+								alert("上传文件类型必须是.torrent文件");
+								ths.value = "";
+								return false;
+							}
+						}
+						document.getElementById('uploadinput').innerText = ths.value
+						return true;
+					}
+					function submitform_b2m(){
+						if (document.getElementById('fileselect').value.length==0)
+						{
+							alert ("请选择上传.torrent文件");
+							document.getElementById('fileselect').focus();
+						}
+						else
+							document.getElementById('b2mform').submit();
+					}
+					</script>
+				</form>
+			  </div>
+		    </div>
+		    <div class="tab-pane well" id="tab3">
+		      <p>请输入种子资源的特征码（HASH值）：</p>
+		      <div style="margin:30px auto;">
+		      	<form class="form-horizontal" method="get" action="/vodplay/fromhashid" id="hashform">
+		      	  <div class="control-group">
+				  	<input type="text" class="input-block-level" placeholder="请输入资源的特征码（HASH值）" name="hashid">
+				  </div>
+				  <div class="control-group">
+				  	<a type="submit" class="btn btn-primary" href="javascript:submitform_hash()" >点击尝试云播放此资源</a>
+				  </div>
+				  <script type="text/javascript">
+				  	function submitform_hash(){
+					  document.getElementById('hashform').submit();
+					}
+				  </script>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<link href="{{url_for('static', filename='css/bootstrap-fileupload.min.css')}}" rel="stylesheet" media="screen">
+
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=906036" charset="utf-8"></script>
+{% endblock%}
+
+{% block footjs %}<script src="{{url_for('static', filename='js/bootstrap-fileupload.min.js')}}"></script>{% endblock%}
+

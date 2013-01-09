@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+	磁力链短网址
+{% endblock%}
+
+{% block container %}
+
+
+{% if error %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-error" style="margin-top:10px;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{error}}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% else %}
+
+<div class="row">
+  <div class="span12">
+    <h3>感谢使用 MGNT.me 磁力链短网址服务，以下是您的链接信息：</h3>
+  </div>
+</div>	
+<div class="row" style="height:46px;">
+	<div class="span12">
+		<div class="jiathis_style_32x32">
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_renren"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_fb"></a>
+			<a class="jiathis_button_twitter"></a>
+			<a class="jiathis_button_googleplus"></a>
+			<a class="jiathis_button_tumblr"></a>
+			<a href="http://www.jiathis.com/share?uid=906036" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+  <div class="span12">
+    <div class="well" style="background-color:white;">
+    	<div class="row">
+			<div class="span12">
+				<div>
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-5514094937222077";
+					/* mgnt-m-big */
+					google_ad_slot = "9613241353";
+					google_ad_width = 728;
+					google_ad_height = 90;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+				</div>
+		  	</div>
+		</div>
+    	<p><small>磁力特征值：{{item.hashid}}</small></p>
+    	<p>
+    		<span class="label label-success"><i class="icon-magnet icon-white"></i> 本磁力链短网址：</span>
+    		<input type="text" style="width:50%;margin:-2px 0 0 2px;color:black;" value="{{item.short_link}}" id="short_link" onMouseOver="SelectAll('short_link')">
+    	</p>
+    	<p><span class="label label-success"><i class="icon-magnet icon-white"></i> 原磁力链接地址：</span><small>（可直接复制到相应客户端下载，或者点击下面的下载按钮）：</small></p>
+		<textarea rows="8" id="maglink" onMouseOver="SelectAll('maglink')" style="width:100%">{{item.maglink}}</textarea>
+    	<h4>您还可以云播放这个文件：</h4>
+    	<div>
+    		<div style="margin:6px 0;">
+			  <div class="span12">
+			    <script type="text/javascript"><!--
+				google_ad_client = "ca-pub-5514094937222077";
+				/* mgnt-m-small */
+				google_ad_slot = "8136508150";
+				google_ad_width = 728;
+				google_ad_height = 15;
+				//-->
+				</script>
+				<script type="text/javascript"
+				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+			  </div>
+			</div>
+	    	<a href="{{item.maglink}}" class="btn btn-danger"><i class="icon-magnet icon-white"></i> 磁力链接下载 </a>
+	    	<a href="{{item.vodlink}}" class="btn btn-danger"><i class="icon-play icon-white"></i> 云播放(Beta) </a>
+	    	
+	    </div>
+    	<h4>或下载这个文件：</h4>
+    	<div>
+	    	<a href="{{item.maglink}}" class="btn btn-primary"><i class="icon-download-alt"></i> 迅雷下载 </a>
+	    	<a href="{{item.maglink}}" class="btn btn-success"><i class="icon-download-alt"></i> QQ旋风下载 </a>
+	    	<a href="http://torrage.com/torrent/{{item.hashid | upper}}.torrent" class="btn btn-warning"><i class="icon-download-alt"></i> 下载BT种子 </a>
+	    </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function SelectAll(id)  
+{  
+    document.getElementById(id).focus();  
+    document.getElementById(id).select();  
+}
+</script>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=906036" charset="utf-8"></script>
+
+{% endif %}
+
+{% endblock%}

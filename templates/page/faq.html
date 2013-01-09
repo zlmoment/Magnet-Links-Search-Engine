@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+	常见问题
+{% endblock%}
+
+{% block container %}
+<div class="row">
+  <div class="span12">
+    <h3>常见问题</h3>
+  </div>
+</div>	
+
+<div class="row">
+  <div class="span12">
+	<h4>什么是磁力链接？</h4>
+	<p>简单的说：类似下面这样以“magnet:?”开头的字符串，就是一条“磁力链接”：magnet:?xt=urn:sha1:YNCKHTQCWBTRNJIV4WNAE52SJUQCZO5C】</p>
+	<p>确切的说：“磁力链接”的主要作用是识别【能够通过“点对点技术（即：P2P）”下载的文件】。</p>
+	<p>这种链接是通过不同文件内容的Hash结果生成一个纯文本的“数字指纹”，来识别文件的。而不是基于文件的位置或者名称（例如：http://www.123.com/123.exe）。</p>
+	<p>这就类似生活中消费品包装上常见的条码。不同的是这个“数字指纹”可以被任何人从任何文件上生成，这也就注定了“磁力链接”不需要任何“中心机构”的支持（例如：BT Tracker服务器），且识别准确度极高。</p>
+	<p>因此任何人都可以生成一个Magnet链接并确保通过该链接下载的文件准确无误。</p>
+  </div>
+</div>	
+
+<div class="row">
+  <div class="span12">
+	<h4>如何下载磁力链接？</h4>
+	<p>如下客户端均支持磁力链接下载：</p>
+	<ul>
+		<li>迅雷</li>
+		<li>QQ旋风</li>
+		<li>μTorrent</li>
+		<li>BitComet</li>
+		<li>BitSpirit</li>
+		<li>Transmission</li>
+		<li>此外，支持磁力连结的应用程序还包括Vuze、BearShare、DC++、Deluge、gtk-gnutella、Kazaa、LimeWire、FrostWire、MP3 Rocket、Morpheus、Shareaza、MLdonkey、aMule、KCeasy和TrustyFiles等。</li>
+	</ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+	<h4>为什么云点播有时候无法使用？</h4>
+	<p>云点播使用的是迅雷云播放平台，如果遇到无法播放的情况，请稍等后刷新页面重新加载。</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+	<h4>为什么一直停留在“获取磁力链接信息”？</h4>
+	<p>“磁力链接”是通过DHT网络来索引需要下载的文件的，因此在某些环境下可能出现“获取磁力链接信息”时间较长，或者获取失败的问题。由于目前相关问题经验的积累很少，因此除了重试还没有明确的解决办法。</p>
+	  
+  </div>
+</div>	
+{% endblock%}
